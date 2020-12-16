@@ -77,8 +77,6 @@ namespace Scp106Rework
 
         private void KeyPress(Synapse.Api.Events.SynapseEventArguments.PlayerKeyPressEventArgs ev)
         {
-            if (ev.KeyCode == KeyCode.Alpha4) RefreshPortal();
-
             if (ev.Player.RoleType != RoleType.Scp106) return;
 
             switch (ev.KeyCode)
