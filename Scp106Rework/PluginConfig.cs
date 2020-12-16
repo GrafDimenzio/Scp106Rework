@@ -20,7 +20,7 @@ namespace Scp106Rework
         };
 
         [Description("The perecentage of how likely it is that a Player get's a second chanche to escape the pocket")]
-        public float SecondTryChanche = 50f;
+        public float SecondTryChanche = 10f;
 
         [Description("The Damage the player gets when he gets the chanche the escape a second time")]
         public int SecondTryDamage = 20;
