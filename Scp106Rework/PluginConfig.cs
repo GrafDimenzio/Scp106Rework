@@ -13,7 +13,7 @@ namespace Scp106Rework
         public bool CustomExits = true;
 
         [Description("The CustomExits where the Victims of 106 exits the pocket dimension")]
-        public List<SerializedMapPoint> CustomExitsPoints = new List<SerializedMapPoint>
+        public List<SerializedMapPoint> CustomExitPoints = new List<SerializedMapPoint>
         {
             new SerializedMapPoint("HCZ_106",2f,6f,0f),
             new SerializedMapPoint("HCZ_106",15f,6f,0f),
@@ -36,6 +36,9 @@ namespace Scp106Rework
 
         [Description("If Enabled Humans can fall through the portal of Scp-106 in the Pocket")]
         public bool PocketTrap = true;
+
+        [Description("If Enabled Scp-106 can stalk to a random player")]
+        public bool Stalk = true;
 
         [Description("The Initial Cooldown of stalk")]
         public float StalkSpawnCooldown = 100f;

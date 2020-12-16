@@ -48,7 +48,7 @@ namespace Scp106Rework
 
         public void Stalk(bool check)
         {
-            if (player.ClassManager.Scp106.goingViaThePortal) return;
+            if (!PluginClass.Config.Stalk || player.ClassManager.Scp106.goingViaThePortal) return;
 
             if (check)
             {

@@ -108,7 +108,7 @@ namespace Scp106Rework
                 ev.TeleportType = PocketDimensionTeleport.PDTeleportType.Exit;
 
             if (PluginClass.Config.CustomExits)
-                ev.ExitPosition = PluginClass.Config.CustomExitsPoints.ElementAt(UnityEngine.Random.Range(0, PluginClass.Config.CustomExitsPoints.Count)).Parse().Position;
+                ev.ExitPosition = PluginClass.Config.CustomExitPoints.ElementAt(UnityEngine.Random.Range(0, PluginClass.Config.CustomExitPoints.Count)).Parse().Position;
 
             if(ev.TeleportType == PocketDimensionTeleport.PDTeleportType.Killer)
             {
