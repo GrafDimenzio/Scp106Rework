@@ -14,11 +14,16 @@ namespace Scp106Rework
             Ev.Get.Player.PlayerKeyPressEvent += KeyPress;
             Ev.Get.Player.LoadComponentsEvent += Load;
             Ev.Get.Scp.Scp106.PortalCreateEvent += CreatePortal;
-            Ev.Get.Scp.ScpAttackEvent += ScpAttack;
             Ev.Get.Player.PlayerJoinEvent += Join;
             Ev.Get.Player.PlayerSyncDataEvent += Move;
             Ev.Get.Player.PlayerSetClassEvent += SetClass;
             Ev.Get.Player.PlayerWalkOnSinkholeEvent += Sinkhole;
+            Ev.Get.Scp.ScpAttackEvent += ScpAttack;
+        }
+
+        private void ScpAttack(Synapse.Api.Events.SynapseEventArguments.ScpAttackEventArgs ev)
+        {
+            if (ev.AttackType == Synapse.Api.Enum.ScpAttackType.Scp106_Grab && ev.Target.Zone == Synapse.Api.Enum.ZoneType.Pocket) ev.Allow = false;
         }
 
         private void Sinkhole(Synapse.Api.Events.SynapseEventArguments.PlayerWalkOnSinkholeEventArgs ev)
@@ -51,11 +56,6 @@ namespace Scp106Rework
         }
 
         private void Join(Synapse.Api.Events.SynapseEventArguments.PlayerJoinEventArgs ev) => RefreshPortal();
-
-        private void ScpAttack(Synapse.Api.Events.SynapseEventArguments.ScpAttackEventArgs ev)
-        {
-            if (ev.AttackType == Synapse.Api.Enum.ScpAttackType.Scp106_Grab && ev.Target.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket) ev.Allow = false;
-        }
 
         private void CreatePortal(Synapse.Api.Events.SynapseEventArguments.PortalCreateEventArgs ev)
         {
