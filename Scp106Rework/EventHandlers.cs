@@ -25,6 +25,8 @@ namespace Scp106Rework
         {
             if (ev.Allow && PluginClass.Config.BetterSinkhole && Vector3.Distance(ev.Player.Position,ev.Sinkhole.transform.position) <= PluginClass.Config.SinkholeTeleportDistance)
             {
+                ev.Player.Position = Vector3.down * 1998.5f;
+                ev.Player.PlayerEffectsController.GetEffect<CustomPlayerEffects.Corroding>().IsInPd = true;
                 ev.Player.GiveEffect(Synapse.Api.Enum.Effect.Corroding);
                 MEC.Timing.CallDelayed(0.1f, () => ev.Player.GiveEffect(Synapse.Api.Enum.Effect.SinkHole, 0));
             }
