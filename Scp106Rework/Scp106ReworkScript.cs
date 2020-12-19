@@ -87,18 +87,21 @@ namespace Scp106Rework
         #endregion
 
         #region PocketTrap
-        public void DoPocketTrapAnimation()
+        public void DoPocketTrapAnimation(bool sinkhole)
         {
-            if (player.GodMode || player.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket || Server.Get.Players.Any(x => x.ClassManager.Scp106 == null ? false : x.ClassManager.Scp106.goingViaThePortal)) return;
+            if (player.GodMode || player.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket) return;
+
+            if (!sinkhole && RoleType.Scp106.GetPlayers().Count > 0 && Server.Get.Players.Any(x => x.ClassManager.Scp106 == null ? false : x.ClassManager.Scp106.goingViaThePortal))
+                return;
 
             if (player.ClassManager.Scp106.goingViaThePortal) return;
 
             player.ClassManager.Scp106.goingViaThePortal = true;
 
-            MEC.Timing.RunCoroutine(PocketTrapAnimation());
+            MEC.Timing.RunCoroutine(PocketTrapAnimation(sinkhole));
         }
 
-        private IEnumerator<float> PocketTrapAnimation()
+        private IEnumerator<float> PocketTrapAnimation(bool sinkhole)
         {
             for (int i = 0; i < 50; i++)
             {
@@ -114,6 +117,8 @@ namespace Scp106Rework
 
             yield return MEC.Timing.WaitForSeconds(0.1f);
             player.ClassManager.Scp106.goingViaThePortal = false;
+            if (sinkhole)
+                player.GiveEffect(Synapse.Api.Enum.Effect.SinkHole, 0);
         }
         #endregion
     }

@@ -28,13 +28,8 @@ namespace Scp106Rework
 
         private void Sinkhole(Synapse.Api.Events.SynapseEventArguments.PlayerWalkOnSinkholeEventArgs ev)
         {
-            if (ev.Allow && PluginClass.Config.BetterSinkhole && Vector3.Distance(ev.Player.Position,ev.Sinkhole.transform.position) <= PluginClass.Config.SinkholeTeleportDistance)
-            {
-                ev.Player.Position = Vector3.down * 1998.5f;
-                ev.Player.PlayerEffectsController.GetEffect<CustomPlayerEffects.Corroding>().IsInPd = true;
-                ev.Player.GiveEffect(Synapse.Api.Enum.Effect.Corroding);
-                MEC.Timing.CallDelayed(0.1f, () => ev.Player.GiveEffect(Synapse.Api.Enum.Effect.SinkHole, 0));
-            }
+            if (ev.Allow && PluginClass.Config.BetterSinkhole && Vector3.Distance(ev.Player.Position, ev.Sinkhole.transform.position) <= PluginClass.Config.SinkholeTeleportDistance)
+                ev.Player.GetComponent<Scp106ReworkScript>().DoPocketTrapAnimation(true);
         }
 
         private void SetClass(Synapse.Api.Events.SynapseEventArguments.PlayerSetClassEventArgs ev)
@@ -52,7 +47,7 @@ namespace Scp106Rework
 
             if (portal != null)
                 if (Vector3.Distance(ev.Player.Position, portal.transform.position) <= 2.5 && ev.Player.RealTeam != Team.SCP && portal.transform.position != Vector3.zero)
-                    ev.Player.GetComponent<Scp106ReworkScript>().DoPocketTrapAnimation();
+                    ev.Player.GetComponent<Scp106ReworkScript>().DoPocketTrapAnimation(false);
         }
 
         private void Join(Synapse.Api.Events.SynapseEventArguments.PlayerJoinEventArgs ev) => RefreshPortal();
