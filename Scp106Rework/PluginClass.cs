@@ -11,9 +11,9 @@ namespace Scp106Rework
         Description = "A Plugin that adds a bunch of new features to Scp106",
         LoadPriority = int.MinValue,
         SynapseMajor = 2,
-        SynapseMinor = 2,
-        SynapsePatch = 0,
-        Version = "v.1.0.0"
+        SynapseMinor = 3,
+        SynapsePatch = 3,
+        Version = "v.1.0.1"
         )]
     public class PluginClass : AbstractPlugin
     {
