@@ -54,6 +54,8 @@ namespace Scp106Rework
 
         private void CreatePortal(Synapse.Api.Events.SynapseEventArguments.PortalCreateEventArgs ev)
         {
+            if (ev.Scp106.Scp106Controller.IsUsingPortal) return;
+
             ev.Scp106.GetComponent<Scp106ReworkScript>().Stalk(true);
 
             if(ev.Scp106.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket)

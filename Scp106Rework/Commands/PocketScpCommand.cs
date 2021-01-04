@@ -6,7 +6,7 @@ namespace Scp106Rework.Commands
         Name = "PocketScp",
         Aliases = new[] { "ps" },
         Description = "A Command that sends other Scp's into the Pocket",
-        Permission = "none",
+        Permission = "",
         Platforms = new[] { Platform.ClientConsole },
         Usage = ".ps and while using the Command look at a Scp"
         )]

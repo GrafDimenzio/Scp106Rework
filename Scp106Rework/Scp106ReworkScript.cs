@@ -17,14 +17,14 @@ namespace Scp106Rework
 
         public bool DoPocketAnimation()
         {
-            if (player.ClassManager.Scp106.goingViaThePortal) return false;
+            if (player.Scp106Controller.IsUsingPortal) return false;
 
             if(player.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket)
             {
                 var portalpos = player.Scp106Controller.PortalPosition;
                 player.Scp106Controller.PortalPosition = oldPos;
                 player.Scp106Controller.UsePortal();
-                MEC.Timing.CallDelayed(1.5f, () => player.Scp106Controller.PortalPosition = portalpos);
+                MEC.Timing.CallDelayed(AnimationDuration, () => player.Scp106Controller.PortalPosition = portalpos);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace Scp106Rework
                 var portalpos = player.Scp106Controller.PortalPosition;
                 player.Scp106Controller.PortalPosition = Vector3.up * -2000;
                 player.Scp106Controller.UsePortal();
-                MEC.Timing.CallDelayed(1.5f, () => player.Scp106Controller.PortalPosition = portalpos);
+                MEC.Timing.CallDelayed(AnimationDuration, () => player.Scp106Controller.PortalPosition = portalpos);
             }
 
             return true;
@@ -47,7 +47,7 @@ namespace Scp106Rework
 
         public void Stalk(bool check)
         {
-            if (!PluginClass.Config.Stalk || player.ClassManager.Scp106.goingViaThePortal) return;
+            if (!PluginClass.Config.Stalk || player.Scp106Controller.IsUsingPortal) return;
 
             if (check)
             {
@@ -79,9 +79,10 @@ namespace Scp106Rework
             var portalpos = player.Scp106Controller.PortalPosition;
             player.Scp106Controller.PortalPosition = pos;
             player.Scp106Controller.UsePortal();
-            MEC.Timing.CallDelayed(1.5f, () => player.Scp106Controller.PortalPosition = portalpos);
+            MEC.Timing.CallDelayed(AnimationDuration, () => player.Scp106Controller.PortalPosition = portalpos);
 
             stalkCanBeUsedTime = Time.time + PluginClass.Config.StalkCooldown;
+            Announced = false;
             return;
         }
         #endregion
@@ -121,5 +122,19 @@ namespace Scp106Rework
                 player.GiveEffect(Synapse.Api.Enum.Effect.SinkHole, 0);
         }
         #endregion
+
+        public const float AnimationDuration = 3.2f;
+
+        public bool Announced = false;
+
+        public void Update()
+        {
+            if (player.RoleType != RoleType.Scp106) return;
+            if(!Announced && Time.time >= stalkCanBeUsedTime)
+            {
+                Announced = true;
+                player.GiveTextHint("Stalk can now be used");
+            }
+        }
     }
 }
