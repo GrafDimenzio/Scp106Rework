@@ -9,11 +9,11 @@ namespace Scp106Rework
         Name = "Scp106Rework",
         Author = "Dimenzio",
         Description = "A Plugin that adds a bunch of new features to Scp106",
-        LoadPriority = int.MinValue,
+        LoadPriority = 0,
         SynapseMajor = 2,
-        SynapseMinor = 3,
-        SynapsePatch = 3,
-        Version = "v.1.0.1"
+        SynapseMinor = 4,
+        SynapsePatch = 2,
+        Version = "v.1.0.2"
         )]
     public class PluginClass : AbstractPlugin
     {

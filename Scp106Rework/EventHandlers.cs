@@ -113,7 +113,7 @@ namespace Scp106Rework
                 {
                     ev.Allow = false;
                     ev.Player.Position = UnityEngine.Vector3.up * -1997;
-                    ev.Player.Hurt(PluginClass.Config.SecondTryDamage);
+                    ev.Player.Hurt(PluginClass.Config.SecondTryDamage, DamageTypes.Pocket, ev.Player);
                     ev.Player.GiveTextHint("You didn't found the exit but you have survied it!");
                     return;
                 }
@@ -121,7 +121,10 @@ namespace Scp106Rework
                 {
                     ev.Allow = false;
                     ev.Player.Position = ev.ExitPosition;
-                    Timing.CallDelayed(0.1f,() => ev.Player.Hurt(99999999, DamageTypes.Pocket));
+                    var killer = Server.Get.Players.FirstOrDefault(x => x.Scp106Controller.PocketPlayers.Contains(ev.Player));
+                    if (killer == null)
+                        killer = ev.Player;
+                    Timing.CallDelayed(0.1f, () => ev.Player.Hurt(99999999, DamageTypes.Pocket, killer));
                 }
             }
         }
