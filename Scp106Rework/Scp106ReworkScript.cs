@@ -92,7 +92,7 @@ namespace Scp106Rework
         {
             if (player.GodMode || player.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket) return;
 
-            if (!sinkhole && RoleType.Scp106.GetPlayers().Count > 0 && Server.Get.Players.Any(x => x.ClassManager.Scp106 == null ? false : x.ClassManager.Scp106.goingViaThePortal))
+            if (!sinkhole && RoleType.Scp106.GetPlayers().Count > 0 && Server.Get.Players.Any(x => x.ClassManager.Scp106 != null && x.ClassManager.Scp106.goingViaThePortal))
                 return;
 
             if (player.ClassManager.Scp106.goingViaThePortal) return;
@@ -107,7 +107,7 @@ namespace Scp106Rework
             for (int i = 0; i < 50; i++)
             {
                 var pos = player.Position;
-                pos.y -= 0.1f;
+                pos.y -= 0.75f;
                 player.Position = pos;
 
                 yield return MEC.Timing.WaitForOneFrame;

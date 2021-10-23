@@ -11,15 +11,19 @@ namespace Scp106Rework
         Description = "A Plugin that adds a bunch of new features to Scp106",
         LoadPriority = 0,
         SynapseMajor = 2,
-        SynapseMinor = 4,
-        SynapsePatch = 2,
-        Version = "v.1.0.2"
+        SynapseMinor = 7,
+        SynapsePatch = 1,
+        Version = "v.1.0.3"
         )]
     public class PluginClass : AbstractPlugin
     {
         [Config(section = "Scp106Rework")]
         public static PluginConfig Config;
 
-        public override void Load() => new EventHandlers();
+        public override void Load()
+        {
+            new EventHandlers();
+            base.Load();
+        }
     }
 }
