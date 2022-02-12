@@ -17,14 +17,14 @@ namespace Scp106Rework.Commands
             if (context.Player.RoleType != RoleType.Scp106)
                 return new CommandResult
                 {
-                    Message = "You are not Scp106",
+                    Message = "You are not SCP-106.",
                     State = CommandResultState.NoPermission,
                 };
 
             if (!PluginClass.Config.PocketScps)
                 return new CommandResult
                 {
-                    Message = "The Command is disabled on this Server",
+                    Message = "The Command is disabled on this Server.",
                     State = CommandResultState.Error
                 };
 
@@ -33,27 +33,27 @@ namespace Scp106Rework.Commands
             if (player == null)
                 return new CommandResult
                 {
-                    Message = "No Player was found",
+                    Message = "No Player was found.",
                     State = CommandResultState.Error
                 };
 
             if (player.RealTeam != Team.SCP)
                 return new CommandResult
                 {
-                    Message = "You can only bring Scp's with this Command in the Pocket",
+                    Message = "You can only bring SCP's with this Command in the Pocket.",
                     State = CommandResultState.Error
                 };
 
             if (player.RoleType == RoleType.Scp106) return new CommandResult
             {
-                Message = "You can't bring Scp106 into the Pocket",
+                Message = "You can't bring SCP-106 into the Pocket.,
                 State = CommandResultState.Error,
             };
 
             player.Position = UnityEngine.Vector3.up * -1997f;
             return new CommandResult
             {
-                Message = "Scp was brought into the Pocket",
+                Message = "Scp was brought into the Pocket.",
                 State = CommandResultState.Ok,
             };
         }

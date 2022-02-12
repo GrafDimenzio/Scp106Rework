@@ -8,12 +8,12 @@ namespace Scp106Rework
     [PluginInformation(
         Name = "Scp106Rework",
         Author = "Dimenzio",
-        Description = "A Plugin that adds a bunch of new features to Scp106",
+        Description = "A Plugin that adds a bunch of new features to SCP-106",
         LoadPriority = 0,
         SynapseMajor = 2,
-        SynapseMinor = 7,
+        SynapseMinor = 8,
         SynapsePatch = 1,
-        Version = "v.1.0.3"
+        Version = "v.1.1.0"
         )]
     public class PluginClass : AbstractPlugin
     {

@@ -18,26 +18,26 @@ namespace Scp106Rework.Commands
             if (context.Player.RoleType != RoleType.Scp106)
                 return new CommandResult
                 {
-                    Message = "You are not Scp106",
+                    Message = "You are not SCP-106.",
                     State = CommandResultState.NoPermission
                 };
 
             if (!PluginClass.Config.PocketLarry) return new CommandResult
             {
-                Message = "The Command is disabled on this Server",
+                Message = "The Command is disabled on this Server.",
                 State = CommandResultState.Error
             };
 
             if (context.Player.GetComponent<Scp106ReworkScript>().DoPocketAnimation())
                 return new CommandResult
                 {
-                    Message = "You are now going into your Pocket",
+                    Message = "You are now going into your Pocket.",
                     State = CommandResultState.Ok
                 };
 
             return new CommandResult
             {
-                Message = "The Cooldown is active so please wait until the Animation is done",
+                Message = "The Cooldown is active so please wait until the Animation is done.",
                 State = CommandResultState.Ok
             };
         }

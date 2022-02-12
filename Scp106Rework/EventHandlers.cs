@@ -4,6 +4,7 @@ using Synapse;
 using Synapse.Api;
 using UnityEngine;
 using System.Linq;
+using Synapse.Api.Enum;
 
 namespace Scp106Rework
 {
@@ -38,7 +39,7 @@ namespace Scp106Rework
 
         private void ScpAttack(Synapse.Api.Events.SynapseEventArguments.ScpAttackEventArgs ev)
         {
-            if (ev.AttackType == Synapse.Api.Enum.ScpAttackType.Scp106_Grab && ev.Target.Zone == Synapse.Api.Enum.ZoneType.Pocket) ev.Allow = false;
+            if (ev.AttackType == ScpAttackType.Scp106_Grab && ev.Target.Zone == ZoneType.Pocket) ev.Allow = false;
         }
 
         private void Sinkhole(Synapse.Api.Events.SynapseEventArguments.PlayerWalkOnSinkholeEventArgs ev)
@@ -60,10 +61,10 @@ namespace Scp106Rework
 
             ev.Scp106.GetComponent<Scp106ReworkScript>().Stalk(true);
 
-            if(ev.Scp106.Room.Zone == Synapse.Api.Enum.ZoneType.Pocket)
+            if(ev.Scp106.Room.Zone == ZoneType.Pocket)
             {
                 ev.Allow = false;
-                ev.Scp106.GiveTextHint("You can't create a portal in your Pocket");
+                ev.Scp106.GiveTextHint("You can't create a portal in your Pocket.");
                 return;
             }
         }
@@ -109,15 +110,15 @@ namespace Scp106Rework
             if (Map.Get.Nuke.Detonated)
                 ev.ExitPosition = PluginClass.Config.WarheadExit.Parse().Position;
             else if (PluginClass.Config.CustomExits)
-                ev.ExitPosition = PluginClass.Config.CustomExitPoints.ElementAt(UnityEngine.Random.Range(0, PluginClass.Config.CustomExitPoints.Count)).Parse().Position;
+                ev.ExitPosition = PluginClass.Config.CustomExitPoints.ElementAt(Random.Range(0, PluginClass.Config.CustomExitPoints.Count)).Parse().Position;
 
             if(ev.TeleportType == PocketDimensionTeleport.PDTeleportType.Killer)
             {
-                if(UnityEngine.Random.Range(1f, 100f) <= PluginClass.Config.SecondTryChanche)
+                if(Random.Range(1f, 100f) <= PluginClass.Config.SecondTryChanche)
                 {
                     ev.Allow = false;
-                    ev.Player.Position = UnityEngine.Vector3.up * -1997;
-                    ev.Player.Hurt(PluginClass.Config.SecondTryDamage, DamageTypes.Pocket, ev.Player);
+                    ev.Player.Position = Vector3.up * -1997;
+                    ev.Player.Hurt(PluginClass.Config.SecondTryDamage, DamageType.PocketDecay);
                     ev.Player.GiveTextHint("You didn't found the exit but you have survied it!");
                     return;
                 }
@@ -128,7 +129,7 @@ namespace Scp106Rework
                     var killer = Server.Get.Players.FirstOrDefault(x => x.Scp106Controller.PocketPlayers.Contains(ev.Player));
                     if (killer == null)
                         killer = ev.Player;
-                    Timing.CallDelayed(0.1f, () => ev.Player.Hurt(99999999, DamageTypes.Pocket, killer));
+                    Timing.CallDelayed(0.1f, () => ev.Player.Hurt(99999999, DamageType.PocketDecay));
                 }
             }
         }

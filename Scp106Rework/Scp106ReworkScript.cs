@@ -61,7 +61,7 @@ namespace Scp106Rework
 
             if (stalkCanBeUsedTime > Time.time)
             {
-                player.GiveTextHint($"Stalk can be used in {System.Math.Ceiling(stalkCanBeUsedTime - Time.time)} seconds");
+                player.GiveTextHint($"Stalk can be used in {System.Math.Ceiling(stalkCanBeUsedTime - Time.time)} second(s).");
                 return;
             }
 
@@ -69,11 +69,11 @@ namespace Scp106Rework
 
             if (players.Count == 0)
             {
-                player.GiveTextHint("No target to Stalk was found");
+                player.GiveTextHint("No target to Stalk was found.");
                 return;
             }
 
-            var pos = players.ElementAt(UnityEngine.Random.Range(0, players.Count)).Position;
+            var pos = players.ElementAt(Random.Range(0, players.Count)).Position;
             pos.y -= 2;
 
             var portalpos = player.Scp106Controller.PortalPosition;
@@ -133,7 +133,7 @@ namespace Scp106Rework
             if(!Announced && Time.time >= stalkCanBeUsedTime)
             {
                 Announced = true;
-                player.GiveTextHint("Stalk can now be used");
+                player.GiveTextHint("Stalk can now be used.");
             }
         }
     }
