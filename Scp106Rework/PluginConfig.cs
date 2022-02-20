@@ -43,6 +43,9 @@ namespace Scp106Rework
         [Description("If Enabled Scp-106 can stalk to a random player")]
         public bool Stalk = true;
 
+        [Description("If Enabled Scp-106 can attack in its dimension")]
+        public bool DimensionAttack = false;
+
         [Description("The Initial Cooldown of stalk")]
         public float StalkSpawnCooldown = 100f;
 
