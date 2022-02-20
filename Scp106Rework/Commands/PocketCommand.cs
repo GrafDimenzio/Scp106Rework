@@ -1,6 +1,5 @@
 ﻿using Synapse.Command;
 
-
 namespace Scp106Rework.Commands
 {
     [CommandInformation(

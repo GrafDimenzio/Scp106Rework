@@ -46,7 +46,7 @@ namespace Scp106Rework.Commands
 
             if (player.RoleType == RoleType.Scp106) return new CommandResult
             {
-                Message = "You can't bring SCP-106 into the Pocket.,
+                Message = "You can't bring SCP-106 into the Pocket.",
                 State = CommandResultState.Error,
             };
 

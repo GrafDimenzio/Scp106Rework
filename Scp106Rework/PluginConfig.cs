@@ -1,6 +1,6 @@
 ﻿using Synapse.Config;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Scp106Rework
 {

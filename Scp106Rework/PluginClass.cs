@@ -11,9 +11,9 @@ namespace Scp106Rework
         Description = "A Plugin that adds a bunch of new features to SCP-106",
         LoadPriority = 0,
         SynapseMajor = 2,
-        SynapseMinor = 8,
-        SynapsePatch = 1,
-        Version = "v.1.1.0"
+        SynapseMinor = 9,
+        SynapsePatch = 0,
+        Version = "v.1.1.1"
         )]
     public class PluginClass : AbstractPlugin
     {

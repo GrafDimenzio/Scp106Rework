@@ -1,10 +1,10 @@
-﻿using Ev = Synapse.Api.Events.EventHandler;
-using MEC;
+﻿using MEC;
 using Synapse;
 using Synapse.Api;
-using UnityEngine;
-using System.Linq;
 using Synapse.Api.Enum;
+using System.Linq;
+using UnityEngine;
+using Ev = Synapse.Api.Events.EventHandler;
 
 namespace Scp106Rework
 {
@@ -53,7 +53,7 @@ namespace Scp106Rework
             if (ev.Role == RoleType.Scp106) ev.Player.GetComponent<Scp106ReworkScript>().stalkCanBeUsedTime = Time.time + PluginClass.Config.StalkSpawnCooldown;
         }
 
-        private void Join(Synapse.Api.Events.SynapseEventArguments.PlayerJoinEventArgs ev) => RefreshPortal();
+        private void Join(Synapse.Api.Events.SynapseEventArguments.PlayerJoinEventArgs ev) => MEC.Timing.CallDelayed(1f,() => RefreshPortal());
 
         private void CreatePortal(Synapse.Api.Events.SynapseEventArguments.PortalCreateEventArgs ev)
         {
