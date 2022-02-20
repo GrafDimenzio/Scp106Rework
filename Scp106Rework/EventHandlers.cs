@@ -39,7 +39,8 @@ namespace Scp106Rework
 
         private void ScpAttack(Synapse.Api.Events.SynapseEventArguments.ScpAttackEventArgs ev)
         {
-            if (ev.AttackType == ScpAttackType.Scp106_Grab && ev.Target.Zone == ZoneType.Pocket) ev.Allow = false;
+            if (ev.AttackType == ScpAttackType.Scp106_Grab && ev.Target.Zone == ZoneType.Pocket && !PluginClass.Config.DimensionAttack)
+                ev.Allow = false;
         }
 
         private void Sinkhole(Synapse.Api.Events.SynapseEventArguments.PlayerWalkOnSinkholeEventArgs ev)
